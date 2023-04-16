@@ -112,14 +112,14 @@ def create_parser() -> ArgumentParser:
     )
 
     parser.add_argument(
-        "gcs_address",
+        "--gcs_address",
         type=str,
         default="127.0.0.1:14550",
         help="Ip address for GCS"
     )
 
     parser.add_argument(
-        "multicast_address",
+        "--multicast_address",
         type=str,
         default="239.255.67.77:14555",
         help="Multicast address"
