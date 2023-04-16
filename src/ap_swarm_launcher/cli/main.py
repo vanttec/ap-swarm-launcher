@@ -110,6 +110,21 @@ def create_parser() -> ArgumentParser:
         metavar="SITL_EXECUTABLE",
         help="path to the ArduPilot SITL executable to use",
     )
+
+    parser.add_argument(
+        "gcs_address",
+        type=str,
+        default="127.0.0.1:14550",
+        help="Ip address for GCS"
+    )
+
+    parser.add_argument(
+        "multicast_address",
+        type=str,
+        default="239.255.67.77:14555",
+        help="Multicast address"
+    )
+
     return parser
 
 
@@ -124,10 +139,9 @@ async def run(
     pos_noise: float = 0.0,
     yaw_noise: float = 0.0,
     tcp_base_port: Optional[int] = None,
+    gcs_address: str = None,
+    multicast_address: str = None
 ) -> None:
-    gcs_address = "127.0.0.1:14550"
-    multicast_address = "239.255.67.77:14555"
-
     sitl_executable = Path.cwd() / sitl_executable
 
     if num_drones_per_row is None:
